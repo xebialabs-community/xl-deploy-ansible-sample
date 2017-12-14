@@ -37,4 +37,14 @@ Vagrant.configure("2") do |config|
       "db" => ["dbqa","dbprod"],
     }
   end
+
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "deploy/playbook.yml"
+    ansible.verbose = 'v' # 'v','vv','vvv','vvvv'
+    ansible.groups = {
+      "web" => ["tomcat1","tomcat2","tomcat3"],
+      "db" => ["dbqa","dbprod"],
+    }
+  end
+
 end

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<udm.DeploymentPackage version="2.0-88" application="PetPortal">
+  <application />
+  <orchestrator />
+  <satisfiesReleaseNotes>false</satisfiesReleaseNotes>
+  <satisfiesPerformanceTested>false</satisfiesPerformanceTested>
+  <satisfiesAllImagesHaveBeenSigned>false</satisfiesAllImagesHaveBeenSigned>
+  <deployables>
+    <smoketest.HttpRequestTest name="/testPage">
+      <tags />
+      <url>{{tests2.ExecutedHttpRequestTest.url}}</url>
+      <expectedResponseText>{{TITLE}}</expectedResponseText>
+      <headers />
+    </smoketest.HttpRequestTest>
+    <jee.War name="/petclinic-backend" file="/petclinic-backend/PetClinic-Backend.war">
+      <tags />
+      <scanPlaceholders>false</scanPlaceholders>
+      <checksum>9900137506f95c16f2d9c70cdde2aaa6e9b6dc3f</checksum>
+    </jee.War>
+    <sql.SqlScripts name="/sql" file="/sql/sql">
+      <tags />
+      <scanPlaceholders>true</scanPlaceholders>
+      <checksum>d4b3118ee7f93b4df063f7ec0810f2a19a21ebc1</checksum>
+    </sql.SqlScripts>
+    <jee.DataSourceSpec name="/petDataSource">
+      <tags />
+      <jndiName>jdbc/petds</jndiName>
+    </jee.DataSourceSpec>
+    <jee.War name="/petclinic" file="/petclinic/PetClinic.war">
+      <tags />
+      <scanPlaceholders>true</scanPlaceholders>
+      <checksum>46ac37343c6180cfc441e8d80107fa36c5b6cab2</checksum>
+    </jee.War>
+    <app.Logger name="/logger" file="/logger/logger">
+      <tags />
+      <scanPlaceholders>true</scanPlaceholders>
+      <checksum>19acf6694159ba473cf4173a57374076a0f4ea3f</checksum>
+    </app.Logger>
+  </deployables>
+  <applicationDependencies />
+  <dependencyResolution>LATEST</dependencyResolution>
+  <undeployDependencies>false</undeployDependencies>
+</udm.DeploymentPackage>

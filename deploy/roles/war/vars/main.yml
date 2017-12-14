@@ -1,0 +1,7 @@
+tmp_dir: /tmp/{{app_name}}
+tomcat_web_apps_dir: "{{target_platform_workspace}}/webapps"
+
+
+tmp_war: "{{tmp_dir}}/{{target_instance_name}}-{{app_version}}.war"
+app_dir: "{{target_platform_workspace}}/{{target_instance_name}}"
+app_src_url: "{{repository_base_url}}/{{app_name}}-{{app_version}}.war"

@@ -1,0 +1,20 @@
+app_name: PetPortal
+app_version: 2.0.89
+
+target_platform_workspace: /var/lib/tomcat7
+tomcat_user: tomcat7
+tomcat_group: tomcat7
+
+
+
+repository_base_url: http://localhost/repository/
+
+target_instance_name: "{{app_name}}"
+target_instance_shutdown_port: 8877
+target_instance_http_port: 8083
+target_instance_https_port: 
+target_instance_ajp_port: 6625
+
+tomcat_catalina_opts: -Xmx512m
+
+

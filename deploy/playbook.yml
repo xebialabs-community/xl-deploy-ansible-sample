@@ -1,0 +1,11 @@
+---
+- hosts: web
+  roles:
+    - war
+  sudo: true
+
+  #- hosts: db
+  #roles:
+  #  - sql
+  #sudo: true
+
