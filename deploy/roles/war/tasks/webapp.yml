@@ -37,3 +37,9 @@
       name={{tomcat_web_apps_dir}}/PetClinic.war
       owner={{tomcat_user}}
       group={{tomcat_group}}
+
+  - name: cleanup temporary directory
+    file:
+      path={{tmp_dir}}
+      state=absent
+
