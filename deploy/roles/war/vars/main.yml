@@ -1,5 +1,8 @@
 tmp_dir: /tmp/{{app_name}}
 tomcat_web_apps_dir: "{{target_platform_workspace}}/webapps"
+tomcat_context_dir: "{{target_platform_workspace}}/conf/Catalina/localhost"
+
+tomcat_configuration_dir: "{{target_platform_workspace}}/configuration"
 
 
 tmp_war: "{{tmp_dir}}/{{target_instance_name}}-{{app_version}}.war"

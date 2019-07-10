@@ -7,19 +7,19 @@
 
   - name: upload the WAR
     copy:
-      src=application/{{app_name}}/{{app_version}}/petclinic/PetClinic.war
-      dest={{tmp_dir}}/PetClinic.war
+      src=application/{{app_name}}/{{app_version}}/{{war_name}}/{{ war_file }}
+      dest={{tmp_dir}}/{{ war_file }}
 
   - name: compute the MD5 of the new WAR
     stat:
-      path={{tmp_dir}}/PetClinic.war
+      path={{tmp_dir}}/{{ war_file }}
       get_md5=True
     register: tmp_war_stat
     changed_when: False
 
   - name: compute the MD5 of the existing WAR
     stat:
-      path={{tomcat_web_apps_dir}}/PetClinic.war
+      path={{tomcat_web_apps_dir}}/{{ war_name }}.war
       get_md5=True
     register: app_war_stat
     changed_when: False
@@ -28,13 +28,13 @@
   #- debug: var=app_war_stat.stat.md5
 
   - name: copy the WAR
-    shell: cp {{tmp_dir}}/PetClinic.war {{tomcat_web_apps_dir}}/PetClinic.war
+    shell: cp {{tmp_dir}}/{{ war_file }} {{tomcat_web_apps_dir}}/{{ war_name }}.war
     when: not app_war_stat.stat.md5 is defined or not tmp_war_stat.stat.md5 == app_war_stat.stat.md5
     notify: restart tomcat
 
   - name: chown the WAR
     file:
-      name={{tomcat_web_apps_dir}}/PetClinic.war
+      name={{tomcat_web_apps_dir}}/{{ war_name }}.war
       owner={{tomcat_user}}
       group={{tomcat_group}}
 

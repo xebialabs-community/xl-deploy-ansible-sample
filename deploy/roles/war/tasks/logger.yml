@@ -1,0 +1,15 @@
+---
+  - name: configuration directory
+    file:
+      path={{tomcat_configuration_dir}}
+      state=directory
+
+  - name: log4j.properties
+    template:
+      backup=yes
+      src=application/{{app_name}}/{{app_version}}/logger/logger/log4j.properties
+      dest={{tomcat_configuration_dir}}/log4j.properties
+      owner={{tomcat_user}}
+      group={{tomcat_group}}
+    notify: restart tomcat
+

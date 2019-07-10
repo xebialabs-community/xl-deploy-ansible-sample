@@ -1,0 +1,10 @@
+---
+  - name: datasource
+    template:
+      backup=yes
+      src=context.xml.j2
+      dest={{tomcat_context_dir}}/{{war_name}}.xml
+      owner={{tomcat_user}}
+      group={{tomcat_group}}
+    notify: restart tomcat
+
