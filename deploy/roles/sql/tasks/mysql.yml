@@ -1,0 +1,20 @@
+---
+
+  - name: create a temp dir
+    file:
+      path={{tmp_dir}}
+      state=directory
+
+  - name: upload the sql file
+    copy:
+      src=application/{{app_name}}/{{app_version}}/sql/sql/update.sql
+      dest={{tmp_dir}}/update.sql
+
+  - name: execute the SQL commandline
+    shell: echo "msql -u {{datasource_username}} -p {{datasource_password}} -f {{tmp_dir}}/update.sql"
+
+  - name: cleanup temporary directory
+    file:
+      path={{tmp_dir}}
+      state=absent
+

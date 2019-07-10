@@ -4,8 +4,8 @@
     - war
   sudo: true
 
-  #- hosts: db
-  #roles:
-  #  - sql
-  #sudo: true
+- hosts: db
+  roles:
+    - sql
+  sudo: true
 
