@@ -4,3 +4,4 @@ vagrant/.vagrant/
 .vagrant/provisioners
 
 .vagrant
+provisioning/roles/geerlingguy.java

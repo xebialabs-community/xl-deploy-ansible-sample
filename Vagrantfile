@@ -6,9 +6,9 @@ nodes = [
   { :hostname => 'dbqa', :ip => '10.0.0.204', :box => 'ubuntu/trusty64', :ram => 512 },
   { :hostname => 'dbprod', :ip => '10.0.0.205', :box => 'ubuntu/trusty64', :ram => 512 },
 
-  { :hostname => 'tomcat1', :ip => '10.0.0.101', :box => 'ubuntu/trusty64', :ram => 1024},
-  { :hostname => 'tomcat2', :ip => '10.0.0.102', :box => 'ubuntu/trusty64', :ram => 1024 },
-  { :hostname => 'tomcat3', :ip => '10.0.0.103', :box => 'ubuntu/trusty64', :ram => 1024 },
+  { :hostname => 'tomcat1', :ip => '10.0.0.101', :box => 'ubuntu/trusty64', :ram => 512},
+  { :hostname => 'tomcat2', :ip => '10.0.0.102', :box => 'ubuntu/trusty64', :ram => 512 },
+  { :hostname => 'tomcat3', :ip => '10.0.0.103', :box => 'ubuntu/trusty64', :ram => 512 },
 ]
 
 # http://superuser.com/questions/144453/virtualbox-guest-os-accessing-local-server-on-host-os wget http://10.0.2.2:4516
@@ -31,11 +31,12 @@ Vagrant.configure("2") do |config|
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "provisioning/playbook.yml"
     #ansible.inventory_path = "provisioning/hosts-vagrant"
-    ansible.verbose = 'v' # 'v','vv','vvv','vvvv'
+    ansible.verbose = 'vv' # 'v','vv','vvv','vvvv'
     ansible.groups = {
       "web" => ["tomcat1","tomcat2","tomcat3"],
       "db" => ["dbqa","dbprod"],
     }
+    ansible.galaxy_role_file = "provisioning/requirements.yml"
   end
 
   #config.vm.provision "ansible" do |ansible|

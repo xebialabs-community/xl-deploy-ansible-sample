@@ -1,7 +1,6 @@
 ---
 
 - name: Install Mysql
-  sudo: True
   command: echo "..installing a new Mysql Database........"
 
 
